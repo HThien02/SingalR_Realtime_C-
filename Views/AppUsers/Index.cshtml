@@ -1,0 +1,56 @@
+﻿@*@model IEnumerable<BlogApplication.Models.AppUser>*@
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row" style="justify-content: center;">
+    <div id="userInformation" class="container col-md-12" style="width: 80%;">
+        @*@{Html.RenderPartial("PartialViews/AppUsers/_UserInformationPartial");}*@
+    </div>
+
+    <div class="container col-md-12">
+        <h2 style="text-align: center;">Other Users</h2>
+        <div id="userContainer" class="container row" style="justify-content: center;">
+
+        </div>
+    </div>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<script>
+    LoadIndexPage();
+
+    function LoadIndexPage() {
+        LoadUserInformation();
+        LoadUsers();
+    }
+
+    function LoadUserInformation() {
+        $.ajax({
+            url: "/AppUsers/LoadUserInformation",
+            type: "GET",
+            success: function (result) {
+                document.getElementById("userInformation").innerHTML = result;
+            },
+            error: function (result) {
+                console.log(result);
+            }
+        });
+    }
+
+    function LoadUsers() {
+        $.ajax({
+            url: "/AppUsers/LoadUsers",
+            type: "GET",
+            success: function (result) {
+                document.getElementById("userContainer").innerHTML = result;
+            },
+            error: function (result) {
+                console.log(result);
+            }
+        });
+    }
+</script>

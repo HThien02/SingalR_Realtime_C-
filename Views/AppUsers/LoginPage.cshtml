@@ -1,0 +1,44 @@
+﻿@model BlogApplication.Models.AppUser
+
+@{
+    ViewData["Title"] = "Login";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section style="display: flex; justify-content: center;">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-6 mb-5 mb-lg-0">
+                <div class="card cascading-right" style="background: hsla(0, 0%, 100%, 0.55); backdrop-filter: blur(30px);">
+                    <div class="card-body p-5 shadow-5">
+                        <h2 class="fw-bold mb-5 text-center">Login</h2>
+                        <form asp-controller="AppUsers" asp-action="Login" method="post" enctype="multipart/form-data">
+                            <div class="form-outline mb-4">
+                                <label asp-for="Email" class="form-label"></label>
+                                <input asp-for="Email" class="form-control" />
+                                <span asp-validation-for="Email" class="text-danger"></span>
+                            </div>
+                            <div class="form-outline mb-4">
+                                <label asp-for="Password" class="form-label"></label>
+                                <input asp-for="Password" class="form-control" type="password" />
+                                <span asp-validation-for="Password" class="text-danger"></span>
+                            </div>
+
+                            <div class="row">
+                                <button type="submit" class="btn btn-primary btn-block mb-4">Log in</button>
+                            </div>
+
+                            <div class="text-center">
+                                <p>Forgot your password? <a href="#">Reset here</a></p>
+                            </div>
+
+                            <div class="text-center">
+                                <p>Don't have an account? <a href="#">Register here</a></p>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,13 @@
+﻿@model IEnumerable<BlogApplication.Models.Post>
+
+@{
+    var PageSize = Int32.Parse(new ConfigurationBuilder().AddJsonFile("appsettings.json").Build().GetSection("AppSettings")["PageSize"]);
+
+    <div style="text-align: center;">
+        @for (int i = 1; i <= Model.Count() / PageSize + 1; i++)
+        {
+            <button type="button" class="btn btn-primary" onclick="LoadPostsByPage(@i)">@i</button>
+        }
+        <input id="currentPage" type="hidden" value="1" />
+    </div>
+}

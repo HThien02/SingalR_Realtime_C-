@@ -1,0 +1,61 @@
+﻿@model BlogApplication.Models.Post
+
+<div class="modal show display" id="myModal" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form asp-controller="Posts" asp-action="Edit" asp-route-id="@Model.PostID" method="post" enctype="multipart/form-data">
+                <div class="modal-header">
+                    <h4 class="modal-title">Edit Your Post</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                            <input type="hidden" asp-for="PostID" />
+                            <div class="form-group">
+                                <label asp-for="AuthorID" class="control-label"></label>
+                                <input asp-for="AuthorID" class="form-control" />
+                                <span asp-validation-for="AuthorID" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="CreatedDate" class="control-label"></label>
+                                <input asp-for="CreatedDate" class="form-control" />
+                                <span asp-validation-for="CreatedDate" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="UpdatedDate" class="control-label"></label>
+                                <input asp-for="UpdatedDate" class="form-control" />
+                                <span asp-validation-for="UpdatedDate" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="Title" class="control-label"></label>
+                                <input asp-for="Title" class="form-control" />
+                                <span asp-validation-for="Title" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="Content" class="control-label"></label>
+                                <input asp-for="Content" class="form-control" />
+                                <span asp-validation-for="Content" class="text-danger"></span>
+                            </div>
+                            <div class="form-group form-check">
+                                <label class="form-check-label">
+                                    @Html.DisplayNameFor(model => model.PublishStatus)
+                                    <input class="form-check-input" asp-for="PublishStatus" />
+                                </label>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="CategoryID" class="control-label"></label>
+                                <select asp-for="CategoryID" class="form-control" asp-items="ViewBag.CategoryID"></select>
+                                <span asp-validation-for="CategoryID" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <input type="submit" value="Save" class="btn btn-primary" />
+                    <button type="button" class="btn btn-delete" onclick="RemovePopup()">Close</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

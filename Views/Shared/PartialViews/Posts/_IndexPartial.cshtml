@@ -1,0 +1,30 @@
+﻿@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor Accessor
+@model IEnumerable<BlogApplication.Models.Post>
+
+@foreach (var post in Model)
+{
+    if (post.PublishStatus)
+    {
+        <div class="card wrapper">
+            <div class="col-md-4">
+                <div class="card-body">
+                    <h5 class="card-title">@post.AppUser.FullName</h5>
+                    <p class="card-text">@post.UpdatedDate | @post.Category.CategoryName</p>
+                    @if (Accessor.HttpContext.Session.GetInt32("UserID") == post.AppUser.UserID)
+                    {
+                        <a class="btn btn-primary btn-wrapper" onclick="LoadEdit(@post.PostID)">Edit</a>
+                        <a class="btn btn-wrapper btn-details" onclick="LoadDetails(@post.PostID)">Details</a>
+                        <a class="btn btn-wrapper btn-delete" onclick="LoadDelete(@post.PostID)">Delete</a>
+                    }
+                </div>
+            </div>
+            <div class="col-md-7">
+                <div class="card-body">
+                    <h5 class="card-title">@post.Title</h5>
+                    <p class="card-text">@post.Content</p>
+                </div>
+            </div>
+        </div>
+    }
+}

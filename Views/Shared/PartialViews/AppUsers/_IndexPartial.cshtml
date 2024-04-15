@@ -1,0 +1,12 @@
+﻿@model IEnumerable<BlogApplication.Models.AppUser>
+
+@foreach (var user in Model)
+{
+    <div class="card wrapper col-md-3">
+        <div class="card-body">
+            <h5 class="card-title">@user.FullName</h5>
+            <p class="card-text">Address: @user.Address</p>
+            <p class="card-text">Email: @user.Email</p>
+        </div>
+    </div>
+}

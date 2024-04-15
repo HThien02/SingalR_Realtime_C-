@@ -1,0 +1,22 @@
+﻿@model IEnumerable<BlogApplication.Models.Post>
+
+@foreach (var post in Model)
+{
+    <div class="card wrapper">
+        <div class="col-md-4">
+            <div class="card-body">
+                <h5 class="card-title">@post.AppUser.FullName</h5>
+                <p class="card-text">@post.UpdatedDate | @post.Category.CategoryName</p>
+                <a asp-action="Edit" asp-route-id="@post.PostID" class="btn btn-primary btn-wrapper">Edit</a>
+                <a asp-action="Details" asp-route-id="@post.PostID" class="btn btn-primary btn-wrapper btn-details">Details</a>
+                <a asp-action="Delete" asp-route-id="@post.PostID" class="btn btn-primary btn-wrapper btn-delete">Delete</a>
+            </div>
+        </div>
+        <div class="col-md-7">
+            <div class="card-body">
+                <h5 class="card-title">@post.Title</h5>
+                <p class="card-text">@post.Content</p>
+            </div>
+        </div>
+    </div>
+}
